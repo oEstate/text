@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{padding:0;margin:0;list-style:none;}
+		div{width:301px;height:278px;border:1px solid #000;margin:100px auto;position:relative;}
+		ol{height:278px;float:left;}
+		ol>li{width:75px;height:30px;border-bottom:1px solid #000;text-align:center;line-height:30px;border-right:1px solid #000;cursor:pointer;}
+		ol>li:last-child{border-bottom:0;}
+		ul{width:200px;height:250px;float:right;position:absolute;margin:14px 0 0 85px;}
+		ul li{display:none;}
+		.ulon{display:block;}
+		.licolor{background-color:red} 
+	</style>
+</head>
+<body>
+	<div>
+		<ol>
+			<li class="licolor">女靴</li>
+			<li>雪地靴</li>
+			<li>冬裙</li>
+			<li>呢大衣</li>
+			<li>毛衣</li>
+			<li>棉服</li>
+			<li>女裤</li>
+			<li>羽绒服</li>
+			<li>牛仔裤</li>
+		</ol>
+		<ul>
+			<li class="ulon"><a href=""><img src="images/60/女靴.jpg"></a></li>
+			<li><a href=""><img src="images/60/雪地靴.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/冬裙.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/呢大衣.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/毛衣.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/棉服.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/女裤.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/羽绒服.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/60/牛仔裤.jpg" alt=""></a></li>
+		</ul>
+	</div>
+
+	<script src="jquery-1.11.3.min.js"></script>
+	<script>
+		var iNow=0
+		var lunbo
+		$('ol').on('mouseenter','li',function(){
+			$(this).attr('class','licolor').siblings().removeClass();
+			var ollength=$(this).index();
+			$('ul li').eq(ollength).attr('class','ulon').siblings().removeClass();
+			iNow=ollength;
+		});
+		
+		function jieshu(){
+			lunbo=setInterval(function(){
+				iNow++;
+				if(iNow>$('ol li').length-1){
+					iNow=0
+			}
+			$('ol li').eq(iNow).attr('class','licolor').siblings().removeClass();
+			$('ul li').eq(iNow).attr('class','ulon').siblings().removeClass()
+
+		},1000);
+		};
+			jieshu();
+		$('div').hover(function(){
+				clearInterval(lunbo);
+		},function(){
+			jieshu();
+		});
+	</script>
+</body>
+</html>
